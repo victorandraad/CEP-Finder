@@ -1,10 +1,10 @@
 <div class="main_container">
     <h1>CEP Finder</h1>
     <!-- Postal code form -->
-    <form action="">
-        <input type="text" value="{{ $addressn  ? $address->cep : '' }}"/>
-        <button type="submit">Search</button>
-    </form>
+    <div class="form">
+        <input type="text" value="{{$address->cep ?? ""}}"/>
+        <button type="submit" id="button">Search</button>
+    </div>
 
     <!-- Errors information -->
     <div class="errors_info">
@@ -12,7 +12,7 @@
     </div>
 
     <!-- Address information -->
-    @if($address != null)
+    @if(isset($address->cep))
         <div class="address_info">
             <p>CEP: <span>{{ $address->cep }}</span></p>
             <p>Logradouro: <span>{{ $address->logradouro }}</span></p>
@@ -28,6 +28,12 @@
 
 </div>
 
+<script>
+    document.querySelector("#button").addEventListener("click", function (){
+        let cep = document.querySelector("input").value;
+        window.location.href = `http://localhost:8000/cep/${cep}`;
+    })
+</script>
 
 <style>
     *{

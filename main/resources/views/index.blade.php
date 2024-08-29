@@ -1,10 +1,11 @@
 <div class="main_container">
     <h1>CEP Finder</h1>
     <!-- Postal code form -->
-    <form action="">
-        <input type="text" placeholder="01001000"/>
-        <button type="submit">Search</button>
-    </form>
+    <div class="form">
+        <input type="text" value=""/>
+        <button type="submit" id="button">Search</button>
+    </div>
+
 
     <!-- Errors information -->
     <div class="errors_info">
@@ -12,11 +13,9 @@
     </div>
 
     <!-- Address information -->
-
     <div class="address_info">
         <p>CEP: <span></span></p>
         <p>Logradouro: <span></span></p>
-        <p>Complemento: <span></span></p>
         <p>Bairro: <span></span></p>
         <p>Localidade: <span></span></p>
         <p>UF: <span></span></p>
@@ -24,6 +23,12 @@
 
 </div>
 
+<script>
+    document.querySelector("#button").addEventListener("click", function (){
+        let cep = document.querySelector("input").value;
+        window.location.href = `http://localhost:8000/cep/${cep}`;
+    })
+</script>
 
 <style>
     *{
@@ -57,6 +62,11 @@
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
+    }
+
+    span{
+        font-weight: bold;
+
     }
 
     button{

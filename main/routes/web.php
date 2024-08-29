@@ -11,4 +11,4 @@ Route::get('/cep/', function () {
     return view('index');
 });
 
-Route::get('cep/{cep?}', [CepController::class, 'show'])->name('cep.get');
+Route::get('/cep/{cep}', [CepController::class, 'show'])->name('cep.get');
