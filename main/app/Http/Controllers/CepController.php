@@ -39,15 +39,15 @@ class CepController extends Controller
     public function show(string $cep): View
     {
         $cep = preg_replace('/\D/', '', $cep);
-        $response = Http::withoutVerifying()->get("https://viacep.com.br/ws/{$cep}/json/");
-        $address = $response->object();
-        $status = $response->status();
         $error = null;
 
-        if($status != 200){
+        if(strlen($cep) != 8){
 
             $error = "O CEP deve conter 8 caracteres numéricos.";
         }
+
+        $response = Http::withoutVerifying()->get("https://viacep.com.br/ws/{$cep}/json/");
+        $address = $response->object();
 
         if(isset($address->erro)){
             $error = "CEP não encontrado.";
